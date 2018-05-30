@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+    <head>
+        <title>
+            Mentor-Mentee management page
+        </title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <h1> Mentor-Mentee management page</h1>
+
+        <p>
+            Hello Deep Bhattacharyya! Here's a nice handy tool for managing your mentees. Because I made this tool, I have become your mentee, <i>laughs evilly</i>.
+        </p>
+
+        <script>
+            list = JSON.parse(localStorage.getItem("list"));
+            console.log(list);
+            if(!list) {
+                var list = [
+                    {
+                        name: "Prithvi S.B.",
+                        rollno: 102117040,
+                        rating: 0,
+                        feedback: "Who cares about feedback for this guy? He obviously sucks."                    
+                    }
+                ];
+                localStorage.setItem("list", JSON.stringify(list));
+            }
+            
+        </script>
+        <h2>Your current mentees: </h2>
+        <p id="ment">
+        <script>
+            var list = JSON.parse(localStorage.list);
+            
+            for(var i=0; i<list.length; i++) {
+                document.write("<div>" + 
+                    "<b>Name: </b><font color=\"green\">" + list[i].name + "</font><br>" +
+                    "<b>Roll no: </b><font color=\"green\">" + list[i].rollno + "</font><br>" +
+                    "<b>Rating: </b><font color=\"green\">" + list[i].rating + "</font><br>" +
+                    "<b>Feedback: </b><font color=\"green\">" + list[i].feedback + "</font><br>" +
+                    "</div><br>"
+                );
+                
+            }
+        </script>
+        </p>
+
+        <h2> Add a mentee to your list: </h2>
+
+        <div>
+            <form id = "newmentee">
+                <fieldset>
+                    <label for="name"><b>Name: </b></label><input type="text"><br>
+                    <label for="name"><b>Roll no: </b></label><input type="number"><br>
+                    <label for="name"><b>Rating: </b></label><input type="number"><br>
+                    <label for="name"><b>Feedback: </b></label><input type="text">
+                    <label for="submit"></label><input type="button" value="Add Mentee" onclick = "clicky()">
+                </fieldset>
+             </form>
+        </div>
+
+        <h2> Delete a mentee from your list: </h2>
+
+        <div>
+            <form id = "deletementee">
+                <fieldset>
+                    <label for="dname"><b>Name: </b></label><input type="text">
+                    <label for="dname"></label><input type="button" value="Delete Mentee" onclick = "del()">
+                </fieldset>
+            </form>
+        </div>
+
+        <script>
+            function clicky() {
+                
+                list = JSON.parse(localStorage.list);
+                list.push({
+                    name: document.getElementById("newmentee").elements[1].value,
+                    rollno: parseInt(document.getElementById("newmentee").elements[2].value),
+                    rating: parseInt(document.getElementById("newmentee").elements[3].value),
+                    feedback: document.getElementById("newmentee").elements[4].value
+                });
+                console.log(list);
+                localStorage.removeItem("list");
+                localStorage.setItem("list", JSON.stringify(list));    
+                location.reload();         
+            }
+        </script>
+        <script>
+            function del() {
+                list = JSON.parse(localStorage.list);
+                for(var k=0; k<list.length; k++) {
+                    if(list[k].name == document.getElementById("deletementee").elements[1].value) {
+                        list.splice(k,1);
+                    }
+                    localStorage.removeItem("list");
+                    localStorage.setItem("list", JSON.stringify(list));
+                    location.reload();
+                }
+            }
+        </script>
+
+    </body>
+</html>

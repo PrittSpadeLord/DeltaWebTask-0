@@ -1,0 +1,38 @@
+body {
+    background-color: aquamarine;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 10px 10px 10px 10px;
+    border: 2px solid teal;
+}
+
+h1 {
+    color: green;
+}
+
+h2 {
+    color: green;
+}
+
+p {
+    color: green;
+}
+
+div {
+    display: block;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 10px 10px 10px 10px;
+    border: 2px solid yellow;
+}
+
+b {
+    color: green;
+}
+
+label {
+    display:inline-block;
+    width:200px;
+    margin-right:30px;
+    text-align:right;
+}
